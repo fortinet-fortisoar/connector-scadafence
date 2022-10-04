@@ -1,0 +1,737 @@
+{
+  "name": "scadafence",
+  "label": "SCADAfence",
+  "version": "1.0.0",
+  "description": "SCADAfence that provides full coverage of large-scale networks, offering best-in-class network monitoring, asset discovery, governance, remote access, and IoT device security. This connector facilitates the automated operations related to alerts, assets, and sites.",
+  "publisher": "Community",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "category": "OT & IoT Security",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server",
+        "description": "Specify the server URL of the SCADAfence server to which you will connect and perform the automated operations.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "server_url",
+        "value": "https://sfc-data-gateway.scadafence.com"
+      },
+      {
+        "title": "Account Route",
+        "description": "Specify the account route that is configured for your account to access the SCADAfence server.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "x_org"
+      },
+      {
+        "title": "API Key",
+        "description": "Specify the API key that is configured for your account to access the SCADAfence server.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "api_key"
+      },
+      {
+        "title": "Secret Key",
+        "description": "Specify the Secret key that is configured for your account to access the SCADAfence server.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "secret_key"
+      },
+      {
+        "title": "Verify SSL",
+        "name": "verify_ssl",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "value": true,
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "title": "Create Alert",
+      "operation": "create_alert",
+      "description": "Create an alert in SCADAfence based on the IP Address, Alert Severity, Description, IS Active, and other input parameters that you have specified.",
+      "category": "investigation",
+      "annotation": "create_alert",
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "ip",
+          "title": "IP Address",
+          "description": "Specify the IP address of the alert based on which you want to create alert in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the IP address of the alert based on which you want to create alert in SCADAfence."
+        },
+        {
+          "name": "severity",
+          "title": "Alert Severity",
+          "description": "Select the severity of alert based on which you want to create alert in SCADAfence. You can choose from the following options: Information, Warning, Threat, Severe, Critical, or Critical.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "Information",
+            "Warning",
+            "Threat",
+            "Severe",
+            "Critical"
+          ]
+        },
+        {
+          "name": "details",
+          "title": "Description",
+          "description": "Specify the description of the alert based on which you want to create alert in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the description of the alert based on which you want to create alert in SCADAfence."
+        },
+        {
+          "title": "Is Active",
+          "description": "Select this checkbox if the status of the alert on which you want to create an alert is set as \"Active\".",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "name": "active",
+          "type": "checkbox",
+          "value": true,
+          "tooltip": "Select this checkbox if the status of the alert on which you want to create an alert is set as \"Active\"."
+        },
+        {
+          "name": "remediation",
+          "title": "Remediation Text",
+          "description": "Specify the remediation text based on which you want to create alert in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the remediation text based on which you want to create alert in SCADAfence."
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "title": "Get Alert List",
+      "operation": "get_alerts",
+      "description": "Retrieves a list of alerts from SCADAfence based on the input parameters that you have specified.",
+      "category": "investigation",
+      "annotation": "get_alerts",
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "number",
+          "title": "Alert Number",
+          "description": "Specify the number of the alert based on which you want to filter the alerts retrieved from SCADAfence. This parameter filters the report results down to a specific alerts and returns all matching reports for that alerts.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the number of the alert based on which you want to filter the alerts retrieved from SCADAfence. This parameter filters the report results down to a specific alerts and returns all matching reports for that alerts."
+        },
+        {
+          "name": "type",
+          "title": "Alert Type ID",
+          "description": "Specify the type ID of the alert based on which you want to filter the alerts retrieved from SCADAfence. This parameter filters the report results down to a specific alerts and returns all matching reports for that alerts.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the type ID of the alert based on which you want to filter the alerts retrieved from SCADAfence. This parameter filters the report results down to a specific alerts and returns all matching reports for that alerts."
+        },
+        {
+          "name": "site_id",
+          "title": "Site ID",
+          "description": "Specify the site ID of the alert based on which you want to retrieve alerts from SCADAfence.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the site ID of the alert based on which you want to retrieve alerts from SCADAfence."
+        },
+        {
+          "name": "status",
+          "title": "Alert Status",
+          "description": "Select the status of alerts based on which you want to filter the alerts retrieved from SCADAfence. You can choose from the following options: Created, InProgress, or Resolved.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "Created",
+            "InProgress",
+            "Resolved"
+          ]
+        },
+        {
+          "name": "severity",
+          "title": "Alert Severity",
+          "description": "Select the severity of alerts based on which you want to filter the alerts retrieved from SCADAfence. You can choose from the following options: Information, Warning, Threat, Severe, Critical, or Critical.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "Information",
+            "Warning",
+            "Threat",
+            "Severe",
+            "Critical"
+          ]
+        },
+        {
+          "name": "ip",
+          "title": "IP Address",
+          "description": "Specify the IP address of the asset based on which you want to retrieve alerts from SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the IP address of the asset based on which you want to retrieve alerts from SCADAfence."
+        },
+        {
+          "name": "from",
+          "title": "From",
+          "type": "datetime",
+          "description": "Specify the Datetime using which you want to filter the result set to only include only those items that have been created after the specified timestamp.",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the Datetime using which you want to filter the result set to only include only those items that have been created after the specified timestamp."
+        },
+        {
+          "name": "to",
+          "title": "To",
+          "type": "datetime",
+          "description": "Specify the Datetime using which you want to filter the result set to only include only those items that have been created before the specified timestamp.",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the Datetime using which you want to filter the result set to only include only those items that have been created before the specified timestamp."
+        },
+        {
+          "name": "from_last_seen",
+          "title": "From LastSeen",
+          "description": "Specify the Datetime using which you want to filter the result set to only include only those items that have been last seen after the specified timestamp.",
+          "type": "datetime",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the Datetime using which you want to filter the result set to only include only those items that have been last seen after the specified timestamp."
+        },
+        {
+          "name": "to_last_seen",
+          "title": "To LastSeen",
+          "description": "Specify the Datetime using which you want to filter the result set to only include only those items that have been last seen before the specified timestamp.",
+          "type": "datetime",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the Datetime using which you want to filter the result set to only include only those items that have been last seen before the specified timestamp."
+        },
+        {
+          "name": "order",
+          "title": "Order By",
+          "description": "Select the order by of alerts based on which you want to filter the alerts retrieved from SCADAfence. You can choose from the following options: Severity or Site ID",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "tooltip": "Select the order by of alerts based on which you want to filter the alerts retrieved from SCADAfence. You can choose from the following options: Severity or Site ID",
+          "options": [
+            "Severity",
+            "Site ID"
+          ]
+        },
+        {
+          "name": "sort",
+          "title": "Sort By",
+          "description": "Select the sort by of alerts based on which you want to filter the alerts retrieved from SCADAfence. You can choose from the following options: Ascending or Descending. If the sort order is not specified, it defaults to Descending.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "tooltip": "Select the sort by of alerts based on which you want to filter the alerts retrieved from SCADAfence. You can choose from the following options: Ascending or Descending. If the sort order is not specified, it defaults to Descending.",
+          "value": "Descending",
+          "options": [
+            "Ascending",
+            "Descending"
+          ]
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "description": "Specify the number of results, per page, that you want to include in the response of this operation.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the number of results, per page, that you want to include in the response of this operation.",
+          "value": 10000
+        },
+        {
+          "name": "page",
+          "title": "Page",
+          "description": "Specify the maximum number of results this operation should return, per page, in the response. By default, this is set as 1.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the maximum number of results this operation should return, per page, in the response. By default, this is set as 1.",
+          "value": 1
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "",
+          "site_id": "",
+          "original_number": "",
+          "number": "",
+          "type": "",
+          "status": "",
+          "severity": "",
+          "details": "",
+          "ip": "",
+          "params": {},
+          "createdOn": "",
+          "remediation": "",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "Update Alert Status",
+      "operation": "update_alert_status",
+      "description": "Update an specific alert in SCADAfence based on the Alert ID and Alert Status that you have specified.",
+      "category": "investigation",
+      "annotation": "update_alert_status",
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "id",
+          "title": "Alert ID",
+          "description": "Specify the ID of the alert based on which you want to update status of the alert in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the ID of the alert based on which you want to update status of the alert in SCADAfence."
+        },
+        {
+          "name": "status",
+          "title": "Alert Status",
+          "description": "Select the status of alerts based on which you want to update status of the alert in SCADAfence. You can choose from the following options: Created, InProgress, or Resolved.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "options": [
+            "Created",
+            "InProgress",
+            "Resolved"
+          ]
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "title": "Get Asset List",
+      "operation": "get_assets",
+      "description": "Retrieves a list of assets from SCADAfence based on the input parameters that you have specified.",
+      "category": "investigation",
+      "annotation": "get_assets",
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "site_id",
+          "title": "Site ID",
+          "description": "Specify the site ID of the asset based on which you want to retrieve assets from SCADAfence.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the site ID of the asset based on which you want to retrieve assets from SCADAfence."
+        },
+        {
+          "name": "ip",
+          "title": "IP Address",
+          "description": "Specify the IP address of the asset based on which you want to retrieve assets from SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the IP address of the asset based on which you want to retrieve assets from SCADAfence."
+        },
+        {
+          "name": "HostName",
+          "title": "hostname",
+          "description": "Specify the hostname of the asset based on which you want to retrieve assets from SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the hostname of the asset based on which you want to retrieve assets from SCADAfence."
+        },
+        {
+          "name": "mac",
+          "title": "Mac Address",
+          "description": "Specify the Mac address of the asset based on which you want to retrieve assets from SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the Mac address of the asset based on which you want to retrieve assets from SCADAfence.",
+          "placeholder": "e.g. C8:39:35:GG:24:76"
+        },
+        {
+          "name": "order",
+          "title": "Order By",
+          "description": "Select the order by of assets based on which you want to filter the assets retrieved from SCADAfence. You can choose from the following options: Site ID, IP, HostName, First Seen, Last Seen, or Total Traffic Bytes. If the order is not specified, it defaults to IP.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "tooltip": "Select the order by of assets based on which you want to filter the assets retrieved from SCADAfence. You can choose from the following options: Site ID, IP, HostName, First Seen, Last Seen, or Total Traffic Bytes. If the order is not specified, it defaults to IP.",
+          "options": [
+            "Site ID",
+            "IP",
+            "HostName",
+            "First Seen",
+            "Last Seen",
+            "Total Traffic Bytes"
+          ],
+          "value": "IP"
+        },
+        {
+          "name": "sort",
+          "title": "Sort By",
+          "description": "Select the sort by of asset based on which you want to filter the assets retrieved from SCADAfence. You can choose from the following options: Ascending or Descending. If the sort order is not specified, it defaults to Ascending.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "tooltip": "Select the sort by of asset based on which you want to filter the assets retrieved from SCADAfence. You can choose from the following options: Ascending or Descending. If the sort order is not specified, it defaults to Ascending.",
+          "value": "Ascending",
+          "options": [
+            "Ascending",
+            "Descending"
+          ]
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "description": "Specify the number of results, per page, that you want to include in the response of this operation.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the number of results, per page, that you want to include in the response of this operation."
+        },
+        {
+          "name": "page",
+          "title": "Page",
+          "description": "Specify the maximum number of results this operation should return, per page, in the response. By default, this is set as 1.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the maximum number of results this operation should return, per page, in the response. By default, this is set as 1.",
+          "value": 1
+        }
+      ],
+      "output_schema": [
+        {
+          "ip": "",
+          "site_id": "",
+          "hostname": "",
+          "mac": "",
+          "vendor": "",
+          "ou": "",
+          "owner": "",
+          "location": "",
+          "comment": "",
+          "cveProduct": "",
+          "cveVersion": "",
+          "assetTypes": [
+          ],
+          "nicType": "",
+          "assetCriticality": {
+            "criticality": "",
+            "exposure": "",
+            "trust_level": "",
+            "safety_impact": "",
+            "process_impact": "",
+            "security_posture": ""
+          },
+          "plcDetails": {},
+          "totalBytes": "",
+          "eventsCount": "",
+          "internalIpsCount": "",
+          "externalIpsCount": "",
+          "operatingSystem": "",
+          "vlanId": [],
+          "firstSeen": "",
+          "lastSeen": ""
+        }
+      ]
+    },
+    {
+      "title": "Update Asset",
+      "operation": "update_asset",
+      "description": "Update an specific asset in SCADAfence based on the Site ID, IP Address, Override and other input parameters that you have specified.",
+      "category": "investigation",
+      "annotation": "update_asset",
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "id",
+          "title": "Site ID",
+          "description": "Specify the site ID of the asset based on which you want to update asset in SCADAfence.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the site ID of the asset based on which you want to update asset in SCADAfence."
+        },
+        {
+          "name": "ip",
+          "title": "IP Address",
+          "description": "Specify the IP address of the asset based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the IP address of the asset based on which you want to update asset in SCADAfence."
+        },
+        {
+          "name": "override",
+          "title": "Override",
+          "description": "Select this checkbox if the override of the asset on which you want to update in SCADAfence.By default, this option is set as False.",
+          "type": "checkbox",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Select this checkbox if the override of the asset on which you want to update in SCADAfence.By default, this option is set as False.",
+          "value": false
+        },
+        {
+          "name": "host",
+          "title": "hostname",
+          "description": "Specify the hostname of the asset based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the hostname of the asset based on which you want to update asset in SCADAfence."
+        },
+        {
+          "name": "device_type",
+          "title": "Device Type",
+          "description": "Specify the type of the device based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the type of the device based on which you want to update asset in SCADAfence."
+        },
+        {
+          "name": "os",
+          "title": "Asset OS",
+          "description": "Specify the OS of the asset based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the OS of the asset based on which you want to update asset in SCADAfence.",
+          "placeholder": "e.g. Windows Server 2009 R2"
+        },
+        {
+          "name": "vendor",
+          "title": "Vendor Name",
+          "description": "Specify the name of the vendor based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the name of the vendor based on which you want to update asset in SCADAfence.",
+          "placeholder": "e.g. Fortinet"
+        },
+        {
+          "name": "ou",
+          "title": "Organization Unit (OU)",
+          "description": "Specify the organization unit of the asset based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the organization unit of the asset based on which you want to update asset in SCADAfence."
+        },
+        {
+          "name": "owner",
+          "title": "Owner",
+          "description": "Specify the owner of the asset based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the owner of the asset based on which you want to update asset in SCADAfence."
+        },
+        {
+          "name": "location",
+          "title": "Physical Location",
+          "description": "Specify the physical location of the asset based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the physical location of the asset based on which you want to update asset in SCADAfence."
+        },
+        {
+          "name": "comment",
+          "title": "Comment",
+          "description": "Specify the comment based on which you want to update asset in SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the comment based on which you want to update asset in SCADAfence."
+        },
+        {
+          "name": "criticality",
+          "title": "Criticality",
+          "description": "Select the criticality of the asset based on which you want to update asset in SCADAfence. SCADAfence. You can choose from the following options: Normal, Medium, High, or Critical.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "tooltip": "Select the criticality of the asset based on which you want to update asset in SCADAfence. SCADAfence. You can choose from the following options: Normal, Medium, High, or Critical",
+          "options": [
+            "Normal",
+            "Medium",
+            "High",
+            "Critical"
+          ]
+        },
+        {
+          "name": "cve_product",
+          "title": "Product CVE",
+          "description": "Specify the CVE of the product based on which you want to update asset in SCADAfence..",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the CVE of the product based on which you want to update asset in SCADAfence.."
+        },
+        {
+          "name": "cve_version",
+          "title": "Version CVE",
+          "description": "Specify the CVE of the version based on which you want to update asset in SCADAfence..",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the CVE of the version based on which you want to update asset in SCADAfence.."
+        }
+      ],
+      "output_schema": {
+        "ip": "",
+        "site_id": "",
+        "hostname": "",
+        "mac": "",
+        "vendor": "",
+        "ou": "",
+        "owner": "",
+        "location": "",
+        "comment": "",
+        "cveProduct": "",
+        "cveVersion": "",
+        "assetTypes": [],
+        "nicType": "",
+        "assetCriticality": {
+          "criticality": "",
+          "exposure": "",
+          "trust_level": "",
+          "safety_impact": "",
+          "process_impact": "",
+          "security_posture": ""
+        },
+        "plcDetails": {},
+        "totalBytes": "",
+        "eventsCount": "",
+        "internalIpsCount": "",
+        "externalIpsCount": "",
+        "operatingSystem": "",
+        "vlanId": [],
+        "firstSeen": "",
+        "lastSeen": ""
+      }
+    },
+    {
+      "title": "Get Sites Status",
+      "operation": "get_sites_status",
+      "description": "Retrieves a list of status of the sites or specific site from SCADAfence based on the input parameters that you have specified.",
+      "category": "investigation",
+      "annotation": "get_sites_status",
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "site_id",
+          "title": "Site ID",
+          "description": "Specify the ID of the site based on which you want to retrieve sites from SCADAfence.",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the ID of the site based on which you want to retrieve sites from SCADAfence."
+        },
+        {
+          "name": "site_name",
+          "title": "Site Name",
+          "description": "Specify the name of the site based on which you want to retrieve sites from SCADAfence.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the name of the site based on which you want to retrieve sites from SCADAfence."
+        }
+      ],
+      "output_schema": [
+        {
+          "site_id": "",
+          "site_name": "",
+          "connection_status": "",
+          "total_assets": "",
+          "total_alerts": "",
+          "alerts": [
+            {
+              "severity": "",
+              "total": ""
+            }
+          ],
+          "data_received_last_hour": "",
+          "last_updated": ""
+        }
+      ]
+    }
+  ]
+}
