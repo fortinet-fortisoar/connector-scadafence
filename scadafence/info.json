@@ -95,7 +95,8 @@
             "Threat",
             "Severe",
             "Critical"
-          ]
+          ],
+          "value": "Information"
         },
         {
           "name": "details",
@@ -197,7 +198,8 @@
             "Threat",
             "Severe",
             "Critical"
-          ]
+          ],
+          "value": "Information"
         },
         {
           "name": "ip",
@@ -260,8 +262,10 @@
           "tooltip": "Select the order by of alerts based on which you want to filter the alerts retrieved from SCADAfence. You can choose from the following options: Severity or Site ID",
           "options": [
             "Severity",
-            "Site ID"
-          ]
+            "Site ID",
+            "Packet Timestamp"
+          ],
+          "value": "Severity"
         },
         {
           "name": "sort",
