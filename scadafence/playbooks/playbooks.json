@@ -1,0 +1,623 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - SCADAfence - 1.0.0",
+      "description": "Sample playbooks for \"SCADAfence\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": null,
+      "uuid": "b3fac623-08fa-4bed-b6a0-c5154c09ea0e",
+      "id": 379,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Create Alert",
+          "aliasName": null,
+          "tag": null,
+          "description": "Create an alert in SCADAfence based on the IP Address, Alert Severity, Description, IS Active, and other input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664874716,
+          "collection": "/api/3/workflow_collections/b3fac623-08fa-4bed-b6a0-c5154c09ea0e",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0d60e094-4d00-4635-b6a3-855a4012c44f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "6f2d43ad-afad-453a-b602-baac86f0f7d5",
+                "title": "SCADAfence: Create Alert",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "0d60e094-4d00-4635-b6a3-855a4012c44f"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Create Alert",
+              "description": null,
+              "arguments": {
+                "name": "SCADAfence",
+                "config": "",
+                "params": {
+                  "ip": "1.1.1.1",
+                  "active": true,
+                  "details": "Create a sample alert in SCADAfence.",
+                  "severity": "Information",
+                  "remediation": ""
+                },
+                "version": "1.0.0",
+                "connector": "scadafence",
+                "operation": "create_alert",
+                "operationTitle": "Create Alert",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "d0006bee-a5d8-4f2a-b65f-297fea5fbca0"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Create Alert",
+              "targetStep": "/api/3/workflow_steps/d0006bee-a5d8-4f2a-b65f-297fea5fbca0",
+              "sourceStep": "/api/3/workflow_steps/0d60e094-4d00-4635-b6a3-855a4012c44f",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "eaec6e47-f454-4320-9058-fa6f1391d2c5"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "1f8776b2-ce5b-4d19-901e-8b45cedf68f8",
+          "id": 5616,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "scadafence"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Alert List",
+          "aliasName": null,
+          "tag": null,
+          "description": "Retrieves a list of alerts from SCADAfence based on the input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664870066,
+          "collection": "/api/3/workflow_collections/b3fac623-08fa-4bed-b6a0-c5154c09ea0e",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/a6ef3cb9-444b-4087-911f-fbb746db5a93",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Alert List",
+              "description": null,
+              "arguments": {
+                "name": "SCADAfence",
+                "config": "",
+                "params": {
+                  "ip": "",
+                  "to": "",
+                  "from": "",
+                  "page": 1,
+                  "size": 10000,
+                  "sort": "Descending",
+                  "type": "",
+                  "order": "",
+                  "number": "",
+                  "status": "",
+                  "site_id": "",
+                  "severity": "",
+                  "to_last_seen": "",
+                  "from_last_seen": ""
+                },
+                "version": "1.0.0",
+                "connector": "scadafence",
+                "operation": "get_alerts",
+                "operationTitle": "Get Alert List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "8fec68fc-64ec-42d1-b6a3-c5b62e98a570"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "f976a659-bf44-4aaa-8c46-aad51b768a72",
+                "title": "SCADAfence: Get Alert List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "a6ef3cb9-444b-4087-911f-fbb746db5a93"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Alert List",
+              "targetStep": "/api/3/workflow_steps/8fec68fc-64ec-42d1-b6a3-c5b62e98a570",
+              "sourceStep": "/api/3/workflow_steps/a6ef3cb9-444b-4087-911f-fbb746db5a93",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "aef49b40-2ea5-4ca2-81aa-8083e757aed5"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "5e970660-aa02-446a-98bc-0cd6786471c4",
+          "id": 5617,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "scadafence"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Asset List",
+          "aliasName": null,
+          "tag": null,
+          "description": "Retrieves a list of assets from SCADAfence based on the input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664870428,
+          "collection": "/api/3/workflow_collections/b3fac623-08fa-4bed-b6a0-c5154c09ea0e",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/d9b701db-657d-4e21-bce1-67240057af85",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "e04d8351-7183-4a6d-b4ed-04c653a22e81",
+                "title": "SCADAfence: Get Asset List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "d9b701db-657d-4e21-bce1-67240057af85"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Asset List",
+              "description": null,
+              "arguments": {
+                "name": "SCADAfence",
+                "config": "",
+                "params": {
+                  "ip": "",
+                  "mac": "",
+                  "page": 1,
+                  "size": "",
+                  "sort": "Ascending",
+                  "order": "IP",
+                  "site_id": "",
+                  "HostName": ""
+                },
+                "version": "1.0.0",
+                "connector": "scadafence",
+                "operation": "get_assets",
+                "operationTitle": "Get Asset List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "de613c16-41b1-41cd-8e9a-cadc4fc7a8b9"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Asset List",
+              "targetStep": "/api/3/workflow_steps/de613c16-41b1-41cd-8e9a-cadc4fc7a8b9",
+              "sourceStep": "/api/3/workflow_steps/d9b701db-657d-4e21-bce1-67240057af85",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "123b40fe-9587-4b28-af22-448ed70651ca"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "883b2a44-1cdd-422e-998c-b91b257a9c9d",
+          "id": 5618,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "scadafence"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Update Asset",
+          "aliasName": null,
+          "tag": null,
+          "description": "Update an specific asset in SCADAfence based on the Site ID, IP Address, Override and other input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664874705,
+          "collection": "/api/3/workflow_collections/b3fac623-08fa-4bed-b6a0-c5154c09ea0e",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/4c00e16d-32f1-4b99-ae8c-dda350210a92",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "34bb16ab-012e-4a38-bf10-42b3696d8f3f",
+                "title": "SCADAfence: Update Asset",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "4c00e16d-32f1-4b99-ae8c-dda350210a92"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Asset",
+              "description": null,
+              "arguments": {
+                "name": "SCADAfence",
+                "config": "",
+                "params": {
+                  "id": 0,
+                  "ip": "1.1.1.1",
+                  "os": "",
+                  "ou": "",
+                  "host": "",
+                  "owner": "",
+                  "vendor": "",
+                  "comment": "",
+                  "site_id": 1,
+                  "location": "",
+                  "override": false,
+                  "criticality": "",
+                  "cve_product": "",
+                  "cve_version": "",
+                  "device_type": ""
+                },
+                "version": "1.0.0",
+                "connector": "scadafence",
+                "operation": "update_asset",
+                "operationTitle": "Update Asset",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "6141ad19-b600-49ff-9858-e9caa7434fe1"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Update Asset",
+              "targetStep": "/api/3/workflow_steps/6141ad19-b600-49ff-9858-e9caa7434fe1",
+              "sourceStep": "/api/3/workflow_steps/4c00e16d-32f1-4b99-ae8c-dda350210a92",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "16d9c230-0534-4836-8959-7ba388257b51"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "96d76e7c-3c85-4bf8-ba60-e51311f926b0",
+          "id": 5619,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "scadafence"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Sites Status",
+          "aliasName": null,
+          "tag": null,
+          "description": "Retrieves a list of status of the sites or specific site from SCADAfence based on the input parameters that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664870823,
+          "collection": "/api/3/workflow_collections/b3fac623-08fa-4bed-b6a0-c5154c09ea0e",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/305bbb28-cdfc-47ed-a2ee-2c94c1854c98",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "9a605341-e7f2-42ad-96d4-cea7523aa323",
+                "title": "SCADAfence: Get Sites Status",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "305bbb28-cdfc-47ed-a2ee-2c94c1854c98"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Sites Status",
+              "description": null,
+              "arguments": {
+                "name": "SCADAfence",
+                "config": "",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "scadafence",
+                "operation": "get_sites_status",
+                "operationTitle": "Get Sites Status",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "82d6d52e-afe6-4693-a50c-ebcee589e2ae"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Sites Status",
+              "targetStep": "/api/3/workflow_steps/82d6d52e-afe6-4693-a50c-ebcee589e2ae",
+              "sourceStep": "/api/3/workflow_steps/305bbb28-cdfc-47ed-a2ee-2c94c1854c98",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "79f6ccb6-a445-414a-bd22-c8a3a2bbf038"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "b0448c93-67e3-46e0-ad84-eb9d0492ac6a",
+          "id": 5620,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "scadafence"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Update Alert Status",
+          "aliasName": null,
+          "tag": null,
+          "description": "Update an specific alert in SCADAfence based on the Alert ID and Alert Status that you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1664874737,
+          "collection": "/api/3/workflow_collections/b3fac623-08fa-4bed-b6a0-c5154c09ea0e",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/e8ca2a9e-09b4-4e18-829e-6dc70c60c2d9",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Alert Status",
+              "description": null,
+              "arguments": {
+                "name": "SCADAfence",
+                "config": "",
+                "params": {
+                  "id": "5bcf1925a81ed3000f831578",
+                  "status": "InProgress"
+                },
+                "version": "1.0.0",
+                "connector": "scadafence",
+                "operation": "update_alert_status",
+                "operationTitle": "Update Alert Status",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "daf03b9f-fc8d-402a-a485-9367bce83713"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "0980721a-b3f3-4f1a-84ac-1e623380e361",
+                "title": "SCADAfence: Update Alert Status",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "e8ca2a9e-09b4-4e18-829e-6dc70c60c2d9"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Update Alert Status",
+              "targetStep": "/api/3/workflow_steps/daf03b9f-fc8d-402a-a485-9367bce83713",
+              "sourceStep": "/api/3/workflow_steps/e8ca2a9e-09b4-4e18-829e-6dc70c60c2d9",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "d84f911d-0a48-4f7d-b99e-b81cf8b0341d"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "c62d69b9-1830-42bf-bbe8-f02addee0354",
+          "id": 5621,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "scadafence"
+          ]
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "scadafence"
+  ]
+}
