@@ -81,13 +81,9 @@ def convert_datetime_to_epoch(date_time):
 def create_alert(config, params):
     sf = SCADAfence(config)
     endpoint = '/alert'
-    try:
-        payload = check_payload(params)
-        response = sf.make_rest_call(endpoint, 'POST', data=json.dumps(payload))
-        return response
-    except Exception as err:
-        logger.exception("{0}".format(str(err)))
-        raise ConnectorError("{0}".format(str(err)))
+    payload = check_payload(params)
+    response = sf.make_rest_call(endpoint, 'POST', data=json.dumps(payload))
+    return response
 
 
 def get_alerts(config, params):
@@ -99,27 +95,19 @@ def get_alerts(config, params):
         params.update({'sort': SORT_DICT.get('sort')})
     if order:
         params.update({'order': ALERT_ORDER_DICT.get('order')})
-    try:
-        payload = check_payload(params)
-        response = sf.make_rest_call(endpoint, 'GET', params=payload)
-        return response
-    except Exception as err:
-        logger.exception("{0}".format(str(err)))
-        raise ConnectorError("{0}".format(str(err)))
+    payload = check_payload(params)
+    response = sf.make_rest_call(endpoint, 'GET', params=payload)
+    return response
 
 
 def update_alert_status(config, params):
     sf = SCADAfence(config)
     endpoint = '/alerts/{0}'.format(id)
-    try:
-        payload = {
-            'status': params.get('status')
-        }
-        response = sf.make_rest_call(endpoint, 'PATCH', data=json.dumps(payload))
-        return response
-    except Exception as err:
-        logger.exception("{0}".format(str(err)))
-        raise ConnectorError("{0}".format(str(err)))
+    payload = {
+        'status': params.get('status')
+    }
+    response = sf.make_rest_call(endpoint, 'PATCH', data=json.dumps(payload))
+    return response
 
 
 def get_assets(config, params):
@@ -131,13 +119,9 @@ def get_assets(config, params):
         params.update({'sort': SORT_DICT.get('sort')})
     if order:
         params.update({'order': ASSET_ORDER_DICT.get('order')})
-    try:
-        payload = check_payload(params)
-        response = sf.make_rest_call(endpoint, 'GET', params=payload)
-        return response
-    except Exception as err:
-        logger.exception("{0}".format(str(err)))
-        raise ConnectorError("{0}".format(str(err)))
+    payload = check_payload(params)
+    response = sf.make_rest_call(endpoint, 'GET', params=payload)
+    return response
 
 
 def update_asset(config, params):
@@ -145,25 +129,17 @@ def update_asset(config, params):
     id = params.pop('id')
     ip = params.pop('ip')
     endpoint = '/asset/{0}/{1}'.format(id, ip)
-    try:
-        payload = check_payload(params)
-        response = sf.make_rest_call(endpoint, 'PATCH', data=json.dumps(payload))
-        return response
-    except Exception as err:
-        logger.exception("{0}".format(str(err)))
-        raise ConnectorError("{0}".format(str(err)))
+    payload = check_payload(params)
+    response = sf.make_rest_call(endpoint, 'PATCH', data=json.dumps(payload))
+    return response
 
 
 def get_sites_status(config, params):
     sf = SCADAfence(config)
     endpoint = '/sites'
-    try:
-        payload = check_payload(params)
-        response = sf.make_rest_call(endpoint, 'GET', params=payload)
-        return response
-    except Exception as err:
-        logger.exception("{0}".format(str(err)))
-        raise ConnectorError("{0}".format(str(err)))
+    payload = check_payload(params)
+    response = sf.make_rest_call(endpoint, 'GET', params=payload)
+    return response
 
 
 def _check_health(config):
