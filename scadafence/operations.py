@@ -18,9 +18,9 @@ class SCADAfence(object):
         self.secret_key = config.get('secret_key')
         url = config.get('server_url').strip('/')
         if not url.startswith('https://') and not url.startswith('http://'):
-            self.url = 'https://{0}/api/'.format(url)
+            self.url = 'https://{0}/api'.format(url)
         else:
-            self.url = url + '/api/'
+            self.url = url + '/api'
         self.verify_ssl = config.get('verify_ssl')
 
     def make_rest_call(self, url, method, data=None, params=None, json=None):
